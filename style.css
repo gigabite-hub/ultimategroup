@@ -1,0 +1,178 @@
+/*
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/gigabite-hub
+Description: Child theme for Hello Elementor
+Author: Amir
+Author URI: https://github.com/gigabite-hub
+Template: hello-elementor
+Version: 1.0
+*/
+
+.blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-card {
+    width: 33.33%;
+    padding: 10px;
+}
+
+.blog-card img {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-content {
+    flex-basis: 75%;
+    padding: 20px;
+}
+
+.col-sidebar {
+    flex-basis: 25%;
+    padding: 20px;
+}
+
+.sidebar {
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget h3 {
+    margin-bottom: 10px;
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget ul li {
+    margin-bottom: 5px;
+}
+
+.widget ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.blog-card a {
+    text-decoration: none;
+}
+
+.col-content img {
+    width: 100%;
+}
+
+#nf-form-1-cont .nf-form-fields-required,
+#nf-form-1-cont .nf-field-label,
+#nf-form-2-cont .nf-form-fields-required,
+#nf-form-2-cont .nf-field-label  {
+    display: none;
+}
+
+/* PopUp */
+.alignnone {
+    height: 700px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.form-popup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-popup #nf-form-1-cont {
+    width: 300px;
+    margin-top: 250px;
+    margin-left: -300px; 
+}
+
+.form-popup input:not([type="button"]):not([type="submit"]) {
+    border: 1px solid #ffffff;
+}
+
+/* Media Query for Tablet Layout */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .blog-card {
+        width: 50%;
+    }
+
+    .col-content,
+    .col-sidebar {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+
+/* Media Query for Mobile Layout */
+@media screen and (max-width: 480px) {
+    .sidebar {
+        padding: 20px;
+    }
+
+    .blog-card {
+        width: 100%;
+    }
+
+	.alignnone {
+        height:350px;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .form-popup {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-popup #nf-form-1-cont {
+        width: 300px;
+        margin-top: 10px;
+        margin-left: 0px; 
+    }
+
+    .form-popup .nf-field-element input:not([type="button"]):not([type="submit"]){
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .form-popup .nf-field-element select {
+        font-size: 12px;
+    }
+}
+
+/*  */
+
+
