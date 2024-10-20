@@ -13,6 +13,12 @@ function ultimate_enqueued_scripts() {
         array( 'hello-elementor-theme-style' ),
         ULTIMATE
     );
+
+    wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/2e71d1c020.js', 
+		array( 'jquery' ),
+		ULTIMATE, 
+		false 
+	);
 }
 
 function display_blog_posts() {
