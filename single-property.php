@@ -22,7 +22,7 @@ get_header();
                     ?>
                     <div class="developer-name">
                         <h3>By <span><?php echo esc_html($developer_name); ?></span></h3> |
-                        <h4>Damac Hills 2</h4>
+                        <h4><?php the_field( 'property_location' ); ?></h4>
                     </div>
                     <div class="pro-status">
                         <h3>Status</h3>
@@ -33,7 +33,7 @@ get_header();
                 <div class="headitem">
                     <div class="price">
                         <p>Starting From</p>
-                        <h3>AED <?php the_field( 'property_price' ); ?></h3>
+                        <h3>AED <?php the_field( 'property_single_price' ); ?></h3>
                     </div>
                 </div>
             </div>
