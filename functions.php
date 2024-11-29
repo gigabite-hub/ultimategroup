@@ -64,6 +64,133 @@ function display_blog_posts() {
 }
 add_shortcode('blog_posts', 'display_blog_posts');
 
+function get_accommodation_taxonomy_radios_shortcode($atts) {
+    ob_start();
+    // Extract shortcode attributes (optional for future customization)
+    $atts = shortcode_atts(
+        array(
+            'taxonomy' => 'accommodation_types', // Default taxonomy
+        ),
+        $atts
+    );
+
+    // Get taxonomy terms
+    $taxonomy = esc_attr($atts['taxonomy']);
+    $terms = get_terms(array(
+        'taxonomy' => $taxonomy,
+        'hide_empty' => false, // Show terms even if not associated with any posts
+    ));
+
+    if (is_wp_error($terms) || empty($terms)) {
+        return 'No terms found for the specified taxonomy.';
+    }
+
+    // Generate output with radio buttons
+    // Generate output with heading, subheading, and radio buttons
+    $output = '<div class="ultimate-filter">';
+    $output .= '<h2>Filters</h2>'; // Heading
+    $output .= '<h3>Type of Accommodation</h3>'; // Subheading
+    $output .= '<form>';
+    $output .= sprintf(
+        '<label><input type="radio" name="%s" value="all"> All</label><br>',
+        esc_attr($taxonomy)
+    );
+
+    foreach ($terms as $term) {
+        $output .= sprintf(
+            '<label><input type="radio" name="%s" value="%s"> %s</label><br>',
+            esc_attr($taxonomy),
+            esc_attr($term->slug),
+            esc_html($term->name)
+        );
+    }
+
+    $output .= '</form>';
+    $output .= '</div>';
+
+    return $output;
+}
+
+// Register the shortcode
+add_shortcode('accommodation_taxonomy_radios', 'get_accommodation_taxonomy_radios_shortcode');
 
 
 
+
+
+function get_accommodation_posts( $atts ) {
+    ob_start();
+
+    $atts = shortcode_atts(
+        array(
+            'post_type' => 'accommodation',
+            'number'    => -1,
+        ),
+        $atts
+    );
+
+    $args = array(
+        'post_type'      => esc_attr($atts['post_type']),
+        'posts_per_page' => intval($atts['number']),
+        'post_status'    => 'publish', // Only fetch published posts
+        'orderby'        => 'title',
+        'order'          => 'DESC',
+    );
+
+    // Query posts
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        return 'No posts found.';
+    }
+    while ($query->have_posts()) {
+        $query->the_post();
+
+        $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: 'https://ultimategroup.ae/wp-content/uploads/2024/10/ULTIMATE-RETREAT-Banner-1024x800.jpg';
+        $title = get_the_title();
+        $location = get_field('acc_location') ?: 'Unknown Location'; // Replace 'Unknown Location' with a default value if needed
+        $price = get_field('acc_price') ?: 'AED 1,000'; // Replace with default price if no value exists
+        $permalink = get_permalink();
+    ?>
+        <div class="ultimate-acc-container">
+            <div class="acc-items">
+                <div class="acc-image">
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
+                </div>
+            </div>
+            <div class="acc-items">
+                <div class="acc-content">
+                <h3><?php echo esc_html($title); ?></h3>
+                <p class="location"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($location); ?></p>
+                <p><?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
+                </div>
+                <div class="acc-specifications">
+                    <div class="acc-specifications-item">
+                        <ul>
+                            <li><i class="fa-solid fa-water-ladder"></i></li>
+                            <li><i class="fa-solid fa-water-ladder"></i></li>
+                            <li><i class="fa-solid fa-water-ladder"></i></li>
+                            <li><i class="fa-solid fa-water-ladder"></i></li>
+                        </ul>
+                    </div>
+                    <div class="acc-specifications-item">
+                        <div class="acc-price">
+                            <span>from</span>
+                            <p>AED 1,000</p>
+                            <span>/ night</span>
+                            <p class="pernight-charge">(AED 1,000  pers./night)</p>
+                        </div>
+                        <a href="<?php echo esc_url($permalink); ?>"><i class="fa-solid fa-plus"></i> Info</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    wp_reset_postdata();
+
+
+    return ob_get_clean();
+}
+add_shortcode( 'fetch_accommodation', 'get_accommodation_posts' );

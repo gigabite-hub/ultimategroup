@@ -179,6 +179,8 @@ Version: 1.0
     float: right;
     border-radius: 3px;
     box-shadow: 5px 5px 7px rgba(8, 55, 84, 0.43);
+    width: 200px;
+    text-align: center;
 }
 
 .direct-section .price p {
@@ -236,7 +238,8 @@ Version: 1.0
 }
 
 .pro-status h4 {
-    background-color: #ffcd45;
+    background-color: #dec3a9;
+    color: #000000;
 }
 
 
@@ -373,6 +376,281 @@ Version: 1.0
 
 .gallery-item {
     width: calc(25% - 10px);
+}
+
+
+/* Accommodation style */
+.ultimate-filter {
+    background-color: #d6c4af;
+    border-radius: 5px 5px 0 0;
+    padding-bottom: 20px;
+}
+
+.ultimate-filter h2 {
+    margin: 0px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #0a3555;
+    border-radius: 5px 5px 0 0;
+}
+
+.ultimate-filter h3 {
+    margin: 0px;
+    font-size: 12px;
+    padding: 10px 10px;
+    text-transform: uppercase;
+    margin: 20px 0px;
+}
+
+.ultimate-filter form label {
+    color: #0a3555;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.ultimate-filter form label input {
+    margin-right: 20px;
+    cursor: pointer;
+
+}
+
+.ultimate-filter form {
+    margin-top: 0px;
+    padding: 0px 10px;
+}
+
+.ultimate-acc-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.acc-image,
+.acc-image img {
+    width: 320px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.ultimate-acc-container .acc-items:first-child {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acc-content h3 {
+    font-size: 22px;
+    font-family: "Cinzel", Sans-serif;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.acc-content .location {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.acc-content .location i {
+    margin-right: 10px;
+}
+
+.acc-content p {
+    font-size: 14px;
+    margin: 0px;
+}
+
+
+.ultimate-acc-container .acc-items:last-child {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    /*     flex-wrap: wrap; */
+    justify-content: space-between
+}
+
+.acc-items .acc-content {
+    padding: 0px 10px;
+}
+
+.acc-specifications {
+    display: flex;
+    width: 100%;
+    background-color: #d6c4ae;
+    height: 100px;
+}
+
+.acc-specifications-item {
+    width: 100%;
+}
+
+.acc-specifications-item ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.acc-specifications-item ul li i {
+    font-size: 24px;
+}
+
+.acc-specifications-item:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acc-specifications-item:last-child {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.acc-price p {
+    margin: 0px;
+    font-size: 10x;
+    font-weight: 700;
+}
+
+.acc-price span {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.56);
+}
+
+.pernight-charge {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.acc-specifications-item a {
+    display: inline-block;
+    background-color: #b09049;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.acc-specifications-item a:hover {
+    transition: all 0.5s ease-in-out;
+    color: #000000;
+}
+
+/* End of Accommodation style */
+
+/* Tablet Breakpoint */
+@media (max-width: 1024px) {
+    .pro-container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .bannerImage {
+        height: 300px;
+    }
+
+    .pro-content h1 {
+        font-size: 30px;
+    }
+
+    .headitem h2 {
+        font-size: 22px;
+    }
+
+    .pro-directbody ul li {
+        font-size: 12px;
+    }
+
+    .amenities-items {
+        width: calc(33.3% - 10px);
+    }
+
+    .gallery-item {
+        width: calc(33.3% - 10px);
+    }
+
+    .pro-status h3, .pro-status h4 {
+        font-size: 10px;
+        padding: 5px 15px;
+    }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+    .bannerImage {
+        height: 200px;
+    }
+
+    .pro-content h1 {
+        font-size: 24px;
+    }
+
+    .pro-container {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .headitem h2 {
+        font-size: 18px;
+    }
+
+    .pro-status {
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .pro-status h3, .pro-status h4 {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+
+    .direct-section {
+        padding: 10px;
+    }
+
+    .amenities-items {
+        width: calc(50% - 10px);
+    }
+
+    .gallery-item {
+        width: calc(50% - 10px);
+    }
+}
+
+/* Small Mobile Breakpoint */
+@media (max-width: 480px) {
+    .bannerImage {
+        height: 150px;
+    }
+
+    .pro-content h1 {
+        font-size: 20px;
+    }
+
+    .pro-status h3, .pro-status h4 {
+        padding: 5px 5px;
+        font-size: 8px;
+    }
+
+    .pro-directbody ul li {
+        font-size: 10px;
+    }
+
+    .amenities-items {
+        width: 100%;
+    }
+
+    .gallery-item {
+        width: 100%;
+    }
 }
 
 
