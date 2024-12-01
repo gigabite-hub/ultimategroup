@@ -19,6 +19,17 @@ function ultimate_enqueued_scripts() {
 		ULTIMATE, 
 		false 
 	);
+
+    wp_enqueue_style('fullcalendar-css', 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css');
+    wp_enqueue_script('moment-js', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js', array('jquery'), null, true);
+    wp_enqueue_script('fullcalendar-js', 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js', array('jquery', 'moment-js'), null, true);
+
+    wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/main.js', array('jquery'), ULTIMATE, true);
+
+    wp_localize_script('main-js', 'ULTIMATE', array(
+        'AJAX_URL' => admin_url('admin-ajax.php'),
+        'NONCE' => wp_create_nonce('ultimate-nonce'),
+    ));
 }
 
 function display_blog_posts() {
@@ -148,8 +159,8 @@ function get_accommodation_posts( $atts ) {
 
         $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: 'https://ultimategroup.ae/wp-content/uploads/2024/10/ULTIMATE-RETREAT-Banner-1024x800.jpg';
         $title = get_the_title();
-        $location = get_field('acc_location') ?: 'Unknown Location'; // Replace 'Unknown Location' with a default value if needed
-        $price = get_field('acc_price') ?: 'AED 1,000'; // Replace with default price if no value exists
+        $location = get_field('acc_location') ?: 'Dubai'; // Replace 'Dubai' with a default value if needed
+        $price = get_field('per_night_price') ?: 'AED 1,000'; // Replace with default price if no value exists
         $permalink = get_permalink();
     ?>
         <div class="ultimate-acc-container">
@@ -167,18 +178,27 @@ function get_accommodation_posts( $atts ) {
                 <div class="acc-specifications">
                     <div class="acc-specifications-item">
                         <ul>
-                            <li><i class="fa-solid fa-water-ladder"></i></li>
-                            <li><i class="fa-solid fa-water-ladder"></i></li>
-                            <li><i class="fa-solid fa-water-ladder"></i></li>
-                            <li><i class="fa-solid fa-water-ladder"></i></li>
+                            <?php if (have_rows('characteristics')): // Check if the repeater field has rows ?>
+                                <?php while (have_rows('characteristics')): the_row(); ?>
+                                    <?php 
+                                    $char_icon = get_sub_field('char_icon'); // Get the nested image field 
+                                    if ($char_icon): ?>
+                                        <li>
+                                            <img src="<?php echo esc_url($char_icon['url']); ?>" alt="<?php echo esc_attr($char_icon['alt']); ?>">
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <li>No characteristics found.</li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <div class="acc-specifications-item">
                         <div class="acc-price">
                             <span>from</span>
-                            <p>AED 1,000</p>
+                            <p><?php echo esc_html($price); ?></p>
                             <span>/ night</span>
-                            <p class="pernight-charge">(AED 1,000  pers./night)</p>
+                            <p class="pernight-charge">(<?php echo esc_html($price); ?>  pers./night)</p>
                         </div>
                         <a href="<?php echo esc_url($permalink); ?>"><i class="fa-solid fa-plus"></i> Info</a>
                     </div>
