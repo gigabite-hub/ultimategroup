@@ -145,9 +145,81 @@ get_header();
                 </div>
             </div>
 
+
+            <div class="accDistribution">
+                <h2>Distribution of bedrooms</h2>
+                <div class="distributionItems">
+                    <ul>
+                        <?php if (have_rows('distribution_partitions')) : ?>
+                            <?php while (have_rows('distribution_partitions')) : the_row(); 
+                                $dis_par_subheading = get_sub_field('dis_par_subheading'); 
+                                $dis_par_heading = get_sub_field('dis_par_heading'); ?>
+                                <li>
+                                    <?php if ($dis_par_icon = get_sub_field('dis_par_icon')) : ?>
+                                        <span class="feature-icon">
+                                            <img src="<?php echo esc_url($dis_par_icon['url']); ?>" alt="<?php echo esc_attr($dis_par_icon['alt']); ?>">
+                                        </span>
+                                    <?php endif; ?>
+                                    <h4 class="bedrooms-count"><?php echo esc_html($dis_par_subheading); ?></h4>
+                                    <p class="bedrooms-type"><?php echo esc_html($dis_par_heading); ?></p>
+                                </li>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="accDistribution">
+                <h2>Your schedule</h2>
+                <div class="scheduleWrapper">
+                    <div class="scheduleItem">
+                        <img src="<?php echo get_stylesheet_directory_uri()."/images/checkin.svg" ?>" alt="checkin">
+                        <div class="scheduleTiming">
+                            <p>Check-in</p>
+                            <p>from <?php the_field( 'secduling_checkin' ); ?> Every day</p>
+                        </div>
+                    </div>
+                    <div class="scheduleItem">
+                        <img src="<?php echo get_stylesheet_directory_uri()."/images/checkOut.svg" ?>" alt="checkin">
+                        <div class="scheduleTiming">
+                            <p>Check-Out</p>
+                            <p>Before <?php the_field( 'secduling_checkout' ); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accSecurity">
+                <h2>Security Deposit (refundable)</h2>
+                <ul>
+                    <li><span class="boldRegular">Amount: </span><?php the_field( 'security_amount' ); ?></li>
+                    <li><span class="boldRegular">Payment method: </span><?php the_field( 'security_payment_method' ); ?></li>
+                    <li><?php the_field( 'security_note' ); ?></li>
+                </ul>
+            </div>
+
+            <div class="google-map-container">
+                <?php 
+                // Get the Google Map iframe value from the ACF field
+                $google_map = get_field('google_map'); 
+                
+                // Check if the field has a value
+                if (!empty($google_map)) : 
+                    echo $google_map; // Output the iframe directly
+                else : ?>
+                    <p>Google Map is not available at the moment.</p>
+                <?php endif; ?>
+            </div>
+
+
         </div>
         <div class="rightSide">
-            
+            <div class="stickyPosition">
+                <div class="bookingFrom">
+                    <?php echo do_shortcode('[ninja_form id=3]'); ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
