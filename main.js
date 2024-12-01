@@ -131,6 +131,27 @@
 
         generateCalendar(events);
 
+
+        $('input[name="accommodation_types"]').on('change', function () {
+            var slug = $(this).val(); // Get the selected value
+            console.log(slug); // Log the selected value
+
+            // Perform AJAX
+            $.ajax({
+                url: ULTIMATE.AJAX_URL,
+                type: 'POST',
+                data: {
+                    action: 'switch_category', // Action hook
+                    slug: slug,               // Data to send
+                    nonce: ULTIMATE.NONCE,    // Security nonce
+                },
+            })
+                .done(function (results) {
+                    $('.ultimateRetreat').html(results); // Replace content on success
+                });
+        });
+
+
     });
 
 }(jQuery));

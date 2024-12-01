@@ -1071,6 +1071,10 @@ a.toggle-btn {
     color: #0a3555;
 }
 
+.ultimate-filter form {
+    display: flex;
+    flex-direction: column;
+}
 
 
 /* End of Special Features */
