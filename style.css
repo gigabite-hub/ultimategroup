@@ -1271,6 +1271,19 @@ a.toggle-btn {
 
 /* Media Query for Tablet Layout */
 @media screen and (max-width: 768px) {
+
+    .scheduleItem img {
+        height: 30px;
+    }
+
+    .scheduleItem {
+        align-items: center;
+    }
+
+    .scheduleTiming p {
+        font-size: 12px;
+    }
+
     .ultimateRetreat {
         margin-top: 20px;
     }
