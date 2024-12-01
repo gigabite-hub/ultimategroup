@@ -2,16 +2,24 @@
 get_header();
 ?>
 
-<div class="ultimate-acc-wrapper"><?php
-
-    $gallery = get_field('acc_images', $atts['post_id']);
-
-    if ($gallery) : ?>
-
+<div class="ultimate-acc-wrapper">
+    <?php
+    $gallery = get_field('acc_images', get_the_ID());
+    if ($gallery && count($gallery) >= 5): ?>
         <div class="gallery">
-            <?php foreach ($gallery as $image): ?>
-                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-            <?php endforeach; ?>
+            <!-- First Div: Single Image -->
+            <div class="single-image">
+                <img src="<?php echo esc_url($gallery[0]['url']); ?>" alt="<?php echo esc_attr($gallery[0]['alt']); ?>" />
+            </div>
+        
+            <!-- Second Div: Four Images -->
+            <div class="four-images">
+                <?php for ($i = 1; $i <= 4; $i++): ?>
+                    <div class="image">
+                        <img src="<?php echo esc_url($gallery[$i]['url']); ?>" alt="<?php echo esc_attr($gallery[$i]['alt']); ?>" />
+                    </div>
+                <?php endfor; ?>
+            </div>
         </div>
 
         <!-- Lightbox -->
@@ -20,11 +28,11 @@ get_header();
             <div class="prev">&lt;</div>
             <div class="next">&gt;</div>
             <img src="#">
-        </div><?php
-
-    endif; ?>
-
+        </div>
+        
+    <?php endif; ?>
 </div>
+
 
 <div class="acc-characteristics">
     <div class="container">

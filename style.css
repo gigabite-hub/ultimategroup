@@ -27,6 +27,7 @@ Version: 1.0
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0px 10px;
 }
 
 .row {
@@ -556,8 +557,8 @@ Version: 1.0
 
 .gallery {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: row;
+    gap: 5px;
 }
 
 .gallery img {
@@ -569,7 +570,7 @@ Version: 1.0
 }
 
 .gallery img:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
 }
 
 #lightbox {
@@ -931,6 +932,42 @@ a.toggle-btn {
     font-weight: 600;
 }
 
+/* .ultimate-acc-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+} */
+
+.four-images,
+.single-image {
+    width: 50%;
+    height: 400px;
+}
+
+.single-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.four-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.four-images .image {
+    height: 200px;
+}
+
+.four-images .image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0px;
+    border-bottom: 6px solid #f9f9f9;
+    border-left: 6px solid #f9f9f9;
+}
 
 
 
@@ -1040,6 +1077,43 @@ a.toggle-btn {
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
+
+    .rightSide,
+    .leftSide {
+        width: 100%;
+    }
+
+    .accBodyContent {
+        flex-wrap: wrap;
+    }
+
+    .google-map-container iframe {
+        width: 100%;
+    }
+
+    .calendar-month {
+        width: 50%;
+        padding: 0px 20px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .char-items:first-child {
+        width: 100%;
+    }
+
+    .char-wrapper {
+        flex-wrap: wrap;
+    }
+
+    .rightSide {
+        margin-top: 0px;
+        padding: 0px;
+        margin-bottom: 50px;
+    }
+
     .pro-container {
         width: 90%;
         margin: 20px auto;
@@ -1150,7 +1224,7 @@ a.toggle-btn {
 @media screen and (max-width: 768px) {
     .container {
         max-width: 100%;
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .blog-card {
@@ -1161,6 +1235,67 @@ a.toggle-btn {
     .col-sidebar {
         flex-basis: 100%;
         width: 100%;
+    }
+
+    .google-map-container iframe {
+        width: 100% !important;
+    }
+
+    .accBodyContent {
+        flex-wrap: wrap;
+    }
+
+    .rightSide,
+    .leftSide {
+        width: 100%;
+    }
+
+    .char-items:first-child {
+        width: 100%;
+    }
+
+    .char-wrapper ul {
+        flex-wrap: wrap;
+    }
+
+    .char-wrapper ul li {
+        width: 50%;
+        margin-bottom: 10px;
+    }
+
+    .acc-characteristics {
+        padding: 10px 0px;
+    }
+
+    .single-image img,
+    .single-image {
+        height: 200px;
+    }
+
+    .four-images .image,
+    .four-images,
+    .four-images .image img {
+        height: 100px;
+    }
+
+    .calendar-month {
+        width: 100%;
+    }
+
+    #availability-calendar {
+        padding: 10px 10px;
+    }
+
+    .rightSide {
+        margin-top: 0px;
+    }
+
+    .amenity-feature {
+        width: 50%;
+    }
+
+    .amenities-group {
+        margin-bottom: 30px;
     }
 }
 
