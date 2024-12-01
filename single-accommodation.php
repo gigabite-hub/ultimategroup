@@ -33,10 +33,12 @@ get_header();
                 <ul>
                     <?php if (have_rows('characteristics')): // Check if the repeater field has rows ?>
                         <?php while (have_rows('characteristics')): the_row(); ?>
-                        <?php $char_icon = get_sub_field('char_icon'); // Get the nested image field 
+                        <?php $char_icon = get_sub_field('char_icon'); // Get the nested image field
+                            $label_characteristics = get_sub_field('label_characteristics');  
                             if ($char_icon): ?>
                                 <li>
                                     <img src="<?php echo esc_url($char_icon['url']); ?>" alt="<?php echo esc_attr($char_icon['alt']); ?>">
+                                    <p><?php echo esc_html($label_characteristics); ?></p>
                                 </li>
                             <?php endif; ?>
                         <?php endwhile; ?>
@@ -68,7 +70,7 @@ get_header();
                 <div class="accContent truncated">
                     <?php echo __($content); ?>
                 </div>
-                <a href="#" class="toggle-btn">More</a>
+                <a href="#" class="toggle-btn">More Details</a>
             </div>
 
             <div class="accAvailability">
@@ -90,8 +92,57 @@ get_header();
                 <div id="availability-calendar" data-events='<?php echo json_encode($events); ?>'></div>
             </div>
 
-            <div class="accAvailability">
-                
+            <div class="specialFeatures">
+                <h2>Special features</h2>
+                <div class="featruesItems">
+                    <ul>
+                        <?php if (have_rows('characteristics')): // Check if the repeater field has rows ?>
+                            <?php while (have_rows('characteristics')): the_row(); ?>
+                            <?php $char_icon = get_sub_field('char_icon'); // Get the nested image field
+                                $label_characteristics = get_sub_field('label_characteristics'); 
+                                if ($char_icon): ?>
+                                    <li>
+                                        <img src="<?php echo esc_url($char_icon['url']); ?>" alt="<?php echo esc_attr($char_icon['alt']); ?>">
+                                        <p><?php echo esc_html($label_characteristics); ?></p>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <li>No characteristics found.</li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+
+                <div class="amenities-section">
+                    <!-- Main Repeater Loop -->
+                    <?php if (have_rows('acc_amenities')) : ?>
+                        <?php while (have_rows('acc_amenities')) : the_row(); ?>
+                            <div class="amenities-group">
+                                <!-- Amenities Heading -->
+                                <h3 class="amenities-heading"><?php the_sub_field('amenities_heading'); ?></h3>
+
+                                <!-- Nested Repeater Loop -->
+                                <?php if (have_rows('amenities_features')) : ?>
+                                    <ul class="amenities-features-list">
+                                        <?php while (have_rows('amenities_features')) : the_row(); ?>
+                                            <li class="amenity-feature">
+                                                <!-- Feature Icon -->
+                                                <?php if ($icon = get_sub_field('feature_icon')) : ?>
+                                                    <span class="feature-icon">
+                                                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>">
+                                                    </span>
+                                                <?php endif; ?>
+
+                                                <!-- Feature Label -->
+                                                <span class="feature-label"><?php the_sub_field('feature_label'); ?></span>
+                                            </li>
+                                        <?php endwhile; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
         </div>
@@ -99,6 +150,7 @@ get_header();
             
         </div>
     </div>
+</div>
 
 <?php
 get_footer();

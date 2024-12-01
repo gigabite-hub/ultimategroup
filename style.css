@@ -616,7 +616,247 @@ Version: 1.0
     top: 50%;
     transform: translateY(-50%);
 }
+
 /* End of Gallery  */
+
+
+
+/* Special Features */
+.acc-characteristics {
+    background-color: #ebecee;
+    padding: 10px 10px;
+}
+
+.char-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.char-items:first-child {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.char-items:last-chid {
+    width: 30%;
+}
+
+.char-wrapper ul li img {
+    height: auto;
+    width: 30px;
+}
+
+.char-wrapper ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* styles.css */
+
+
+.accBodyContent {
+    display: flex;
+    /* border: 1px solid #000; */
+}
+
+.accBodyContent>div {
+    /* border: 1px solid #000; */
+}
+
+.leftSide {
+    width: 70%;
+}
+
+.rightSide {
+    width: 30%;
+}
+
+a.toggle-btn {
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.toggle-btn:hover {
+    text-decoration: underline;
+}
+
+.accAvailability {
+    margin: 20px 0;
+}
+
+/* Calender */
+#availability-calendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* background-color: #ffffff; */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .08);
+    padding: 20px 20px;
+}
+
+.calendar-month {
+    margin: 10px 0;
+}
+
+.calendar-month h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.calendar-month table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-month th,
+.calendar-month td {
+    width: 14.28%;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    border: 0px;
+}
+
+.calendar-month tr td {
+    border-bottom: 2px solid #fff;
+}
+
+.calendar-month table tbody>tr:nth-child(odd)>th {
+    background-color: transparent;
+}
+
+.calendar-month td.highlight {
+    background-color: #19dd91;
+    font-weight: bold;
+}
+
+.calendar-month td.empty {
+    background-color: transparent;
+}
+
+.featruesItems ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.featruesItems ul li {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.char-wrapper ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.featruesItems ul li p,
+.char-wrapper ul li p {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+.feature-icon img,
+.featruesItems ul li img {
+    height: 28px;
+    width: 28px;
+}
+
+.amenities-features-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.amenity-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 33.3%;
+    margin-bottom: 20px;
+}
+
+h3.amenities-heading {
+    font-size: 22px;
+}
+
+
+.feature-label {
+    font-size: 14px;
+}
+
+
+.amenities-group {
+    border-bottom: 1px solid #ddc1a3;
+    margin-bottom: 50px;
+}
+
+.accHeader h1 {
+    font-size: 30px;
+    font-family: "Cinzel", Sans-serif;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 30px;
+}
+
+.specialFeatures h2,
+.accAvailability h2,
+.accAccommodation h2 {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: "Cinzel", Sans-serif;
+    border-bottom: 1px solid #ddc1a3;
+    padding: 20px 0px;
+}
+
+.accAccommodation h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.accAccommodation {
+    margin: 30px 0px;
+}
+
+a.toggle-btn {
+    margin: 20px 0px;
+    display: inline-block;
+    color: #ddc1a3;
+}
+
+.featruesItems {
+    margin-bottom: 40px;
+}
+
+.amenities-heading {
+    margin-bottom: 30px;
+}
+
+.amenities-group:last-child {
+    border: 0px;
+}
+
+/* End of Special Features */
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
