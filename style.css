@@ -1076,6 +1076,51 @@ a.toggle-btn {
     flex-direction: column;
 }
 
+.loading::before {
+    background: #d6c4ae;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: .5;
+    z-index: 9;
+}
+
+.loading {
+    position: relative;
+}
+
+.loading:after {
+    content: " ";
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #0a3555;
+    border-color: #0a3555 transparent #0a3555 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateY(-50%);
+    margin-top: -24px;
+    margin-left: -24px;
+    z-index: 9;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* End of Special Features */
 
@@ -1226,6 +1271,38 @@ a.toggle-btn {
 
 /* Media Query for Tablet Layout */
 @media screen and (max-width: 768px) {
+    .ultimateRetreat {
+        margin-top: 20px;
+    }
+
+    .ultimate-acc-container {
+        flex-wrap: wrap;
+    }
+
+    .ultimate-acc-container .acc-items:last-child,
+    .ultimate-acc-container .acc-items:first-child {
+        width: 100%;
+    }
+
+    .acc-image, .acc-image img {
+        width: 100%;
+    }
+
+    .acc-specifications {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 10px;
+    }
+
+    .acc-specifications-item:last-child {
+        justify-content: space-between;
+    }
+
+    .acc-content h3 {
+        margin-top: 20px;
+    }
+
     .container {
         max-width: 100%;
         padding: 0 10px;
@@ -1265,6 +1342,7 @@ a.toggle-btn {
     .char-wrapper ul li {
         width: 50%;
         margin-bottom: 10px;
+        justify-content: center;
     }
 
     .acc-characteristics {

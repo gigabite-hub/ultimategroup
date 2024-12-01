@@ -145,10 +145,15 @@
                     slug: slug,               // Data to send
                     nonce: ULTIMATE.NONCE,    // Security nonce
                 },
+                beforeSend: function () {
+                    $('.ultimateRetreat').addClass('loading');
+                }
             })
-                .done(function (results) {
-                    $('.ultimateRetreat').html(results); // Replace content on success
-                });
+            .done(function (results) {
+                $('.ultimateRetreat').html(results);
+                $('.ultimateRetreat').removeClass('loading');
+            });
+                
         });
 
 
