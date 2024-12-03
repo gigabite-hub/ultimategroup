@@ -1171,6 +1171,10 @@ a.toggle-btn {
 
 
 /* End of Special Features */
+.propertyForm .nf-field-label,
+.propertyForm .nf-before-form-content {
+    display: none;
+}
 
 
 .ultimateProperty {
