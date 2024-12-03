@@ -302,3 +302,36 @@ function switch_category() {
 
 add_action('wp_ajax_switch_category', 'switch_category');
 add_action('wp_ajax_nopriv_switch_category', 'switch_category');
+
+
+function all_property_posts( ) {
+    ob_start(); ?>
+
+    <div class="ultimateProperty">
+
+        <div class="ultimateItems">
+            <a href="" class="itemsWrappers">
+                <div class="propertyImg">
+                    <img src="https://ultimategroup.ae/wp-content/uploads/2024/11/banner-1.jpg" alt="">
+                </div>
+
+                <div class="propertyContent">
+                    <h2>Farm Grove at The Valley, Dubai – Emaar Properties</h2>
+                    <p>Overview Part of the celebrated The Valley community by Emaar Properties, Farm Grove showcases...Read More→</p>
+                    <div class="propertyPrice">
+                        <p>Starting Price</p>
+                        <h4>AED 15000 <i class="fa-solid fa-circle-info"></i></h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+
+    <?php
+    wp_reset_postdata();
+
+    return ob_get_clean();
+}
+add_shortcode( 'all_property', 'all_property_posts' );

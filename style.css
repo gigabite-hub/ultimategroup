@@ -1122,7 +1122,91 @@ a.toggle-btn {
 }
 
 
+
 /* End of Special Features */
+
+
+.ultimateProperty {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ultimateItems {
+    width: 33.3%;
+    margin-bottom: 15px;
+}
+
+.itemsWrappers {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    display: inline-block;
+}
+
+.itemsWrappers:hover .propertyImg img {
+    transform: scale(1.02);
+    transition: transform 0.5s ease-in-out;
+}
+
+.propertyImg img,
+.propertyImg {
+    height: 160px;
+    width: 100%;
+}
+
+.propertyImg img {
+    object-fit: cover;
+    border-radius: 0px;
+    border-radius: 10px;
+}
+
+.propertyContent h2 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.propertyContent {
+    padding: 0px 10px;
+}
+
+.propertyContent p {
+    font-size: 14px;
+}
+
+.propertyPrice {
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 10px;
+    text-align: center;
+    background-color: #0a3555;
+    border-radius: 10px;
+}
+
+.propertyPrice h4,
+.propertyPrice p {
+    margin: 0px;
+}
+
+.propertyPrice p {
+    color: #50431e;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #dec2a4;
+}
+
+.propertyPrice h4 {
+    color: #0a3555;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.propertyPrice h4 i {
+    color: #ecce80;
+}
+
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
