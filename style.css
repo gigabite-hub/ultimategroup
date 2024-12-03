@@ -182,10 +182,11 @@ Version: 1.0
     box-shadow: 5px 5px 7px rgba(8, 55, 84, 0.43);
     width: 200px;
     text-align: center;
+    background-color: #0a3555;
 }
 
 .direct-section .price p {
-    color: #6d5b23;
+    color: #dec3a9;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.8px;
@@ -194,8 +195,54 @@ Version: 1.0
 .direct-section .price h3 {
     font-size: 14px;
     font-weight: 600;
+    color: #ffffff;
 }
 
+
+.propertyForm nf-fields-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -10px;
+    justify-content: space-between;
+}
+
+.propertyForm nf-fields-wrap nf-field {
+    width: 50%;
+}
+
+.propertyForm nf-fields-wrap nf-field:nth-child(5),
+.propertyForm nf-fields-wrap nf-field:nth-child(6),
+.propertyForm nf-fields-wrap nf-field:nth-child(7) {
+    flex-basis: 100%;
+}
+
+
+.propertyForm #ninja_forms_required_items, .nf-field-container {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.propertyForm .nf-after-form-content,
+.propertyForm .nf-after-field {
+    display: none;
+}
+
+.propertyForm .nf-error.field-wrap .nf-field-element:after {
+    width: 30px;
+    height: 30px;
+    line-height: 35px;
+    background: #0a3555;
+}
+
+.propertyForm .nf-form-content input[type=submit] {
+    background: #0a3555;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+
+.propertyForm .nf-form-content input[type=submit]:hover {
+    border-radius: 0px;
+}
 
 .head-section {
     display: flex;
@@ -555,13 +602,13 @@ Version: 1.0
 
 /* Gallery */
 
-.gallery {
+.ultimate-acc-wrapper .gallery {
     display: flex;
     flex-direction: row;
     gap: 5px;
 }
 
-.gallery img {
+.ultimate-acc-wrapper .gallery img {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -1132,8 +1179,10 @@ a.toggle-btn {
 }
 
 .ultimateItems {
-    width: 33.3%;
+    width: calc(33.333% - 15px);
     margin-bottom: 15px;
+    padding: 10px;
+    /* flex: 1; */
 }
 
 .itemsWrappers {
@@ -1141,6 +1190,9 @@ a.toggle-btn {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, .1);
     display: inline-block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
 }
 
 .itemsWrappers:hover .propertyImg img {
@@ -1207,6 +1259,19 @@ a.toggle-btn {
     color: #ecce80;
 }
 
+.propertyForm .nf-form-content input:not([type=button]) {
+    border: 1px solid #0a3555;
+}
+
+.propertyForm .nf-form-content input:not([type="button"]):not([type="submit"]) {
+    border-radius: 0px;
+}
+
+.propertyForm .nf-form-content textarea.ninja-forms-field {
+    height: 100px;
+    border: 1px solid #0a3555;
+    color: #0a3555;
+}
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
@@ -1264,9 +1329,9 @@ a.toggle-btn {
         font-size: 22px;
     }
 
-    .pro-directbody ul li {
+    /* .pro-directbody ul li {
         font-size: 12px;
-    }
+    } */
 
     .amenities-items {
         width: calc(33.3% - 10px);
@@ -1284,6 +1349,65 @@ a.toggle-btn {
 
 /* Mobile Breakpoint */
 @media (max-width: 768px) {
+
+    .propertyForm nf-fields-wrap nf-field {
+        width: 100%
+    }
+
+    .propertyForm .nf-form-content input[type=submit] {
+        width: 100%;
+    }
+
+    .head-section {
+        flex-wrap: wrap;
+        justify-content: normal;
+    }
+
+    .headitem {
+        width: 100%;
+    }
+
+    .headitem .pro-status {
+        flex-wrap: nowrap;
+    }
+
+    .headitem .pro-status h3, .headitem .pro-status h4 {
+        font-size: 12px;
+    }
+
+    .pro-directbody ul {
+        margin: 20px 0px;
+    }
+
+    .pro-directbody ul li {
+        width: 100%;
+    }
+
+    .direct-section .price {
+        float: none;
+        width: 100%;
+
+    }
+
+    .gallery {
+        flex-wrap: wrap;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .ultimateProperty {
+        flex-wrap: wrap;
+    }
+
+    .ultimateItems {
+        width: 100%;
+        flex: none;
+    }
+
     .bannerImage {
         height: 200px;
     }
@@ -1302,7 +1426,7 @@ a.toggle-btn {
     }
 
     .pro-status {
-        flex-direction: column;
+        flex-direction: row;
         margin: 10px 0;
     }
 
@@ -1325,7 +1449,7 @@ a.toggle-btn {
 }
 
 /* Small Mobile Breakpoint */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .bannerImage {
         height: 150px;
     }
@@ -1350,7 +1474,7 @@ a.toggle-btn {
     .gallery-item {
         width: 100%;
     }
-}
+} */
 
 
 /* Media Query for Tablet Layout */

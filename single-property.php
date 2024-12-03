@@ -41,33 +41,33 @@ get_header();
             <div class="pro-directbody">
                 <ul>
                     <li>
-                        <p>Property Type:</p>
-                        <p><?php the_field( 'property_type' ); ?></p>
+                        <p><i class="fa-solid fa-house"></i> Property Type:</p>
+                        <p><b><?php the_field( 'property_type' ); ?></b></p>
                     </li>
 
                     <li>
                         <p><i class="fa-solid fa-bed"></i> Unit type:</p>
-                        <p><?php the_field( 'unit_type' ); ?></p>
+                        <p><b><?php the_field( 'unit_type' ); ?></b></p>
                     </li>
 
                     <li>
                         <p><i class="fa-solid fa-chart-area"></i> Size:</p>
-                        <p><?php the_field( 'size' ); ?></p>
+                        <p><b><?php the_field( 'size' ); ?></b></p>
                     </li>
 
                     <li>
                         <p><i class="fa-solid fa-percent"></i> Down Payment:</p>
-                        <p><?php the_field( 'down_payment' ); ?></p>
+                        <p><b><?php the_field( 'down_payment' ); ?></b></p>
                     </li>
 
                     <li>
                         <p><i class="fa-regular fa-money-bill-1"></i> Payment Plan:</p>
-                        <p><?php the_field( 'payment_plan' ); ?></p>
+                        <p><b><?php the_field( 'payment_plan' ); ?></b></p>
                     </li>
 
                     <li>
                         <p><i class="fa-solid fa-chart-area"></i> Handover:</p>
-                        <p><?php the_field( 'handover' ); ?></p>
+                        <p><b><?php the_field( 'handover' ); ?></b></p>
                     </li>
                 </ul>
             </div>
@@ -130,26 +130,30 @@ get_header();
                 </div>
             <?php endif; ?>
         </section>
-
-        <section class="feature-amenities gallery">
-            <h2>Gallery</h2>
-            
-            <?php 
-            $gallery_images = get_field('images'); // Assuming 'images' is the gallery field name
-            if( $gallery_images ): ?>
-                <div class="gallery-grid">
-                    <?php foreach( $gallery_images as $image ): ?>
-                        <div class="gallery-item">
-                            <a href="<?php echo esc_url($image['url']); ?>" target="_blank">
-                                <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-            
+    <section class="feature-amenities gallery">
+       
+        <h2>Gallery</h2>
+        <?php 
+        $gallery_images = get_field('images'); // Assuming 'images' is the gallery field name
+        if( $gallery_images ): ?>
+            <div class="gallery-grid madarchod-coding">
+                <?php foreach( $gallery_images as $image ): ?>
+                    <div class="gallery-item">
+                        <a href="<?php echo esc_url($image['url']); ?>" target="_blank">
+                            <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        
+    </section>
+        <section class="feature-amenities propertyForm">
+            <h2>Get in touch!</h2>
+            <?php echo do_shortcode('[ninja_form id=1]');  ?>
         </section>
 
+		
 
     </div>
 
