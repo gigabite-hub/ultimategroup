@@ -83,7 +83,7 @@ get_header();
             <?php the_content(); ?>
         </section>
 
-        <section class="feature-amenities">
+        <section class="feature-amenities" id="amenities">
             <h2>Feature & Amenities</h2>
             <?php if( have_rows('feature_amenities_items') ): ?>
                 <div class="amenities-flex"><?php 
@@ -106,7 +106,7 @@ get_header();
             <?php endif; ?>
         </section>
 
-        <section class="feature-amenities payment-plan">
+        <section class="feature-amenities payment-plan" id="paymentplan">
             <h2>Payment Plan</h2>
             <?php if( have_rows('payment_plan_items') ): ?>
                 <div class="amenities-flex"><?php
@@ -130,30 +130,29 @@ get_header();
                 </div>
             <?php endif; ?>
         </section>
-    <section class="feature-amenities gallery">
+        <section class="feature-amenities gallery" id="gallery">
        
-        <h2>Gallery</h2>
-        <?php 
-        $gallery_images = get_field('images'); // Assuming 'images' is the gallery field name
-        if( $gallery_images ): ?>
-            <div class="gallery-grid madarchod-coding">
-                <?php foreach( $gallery_images as $image ): ?>
-                    <div class="gallery-item">
-                        <a href="<?php echo esc_url($image['url']); ?>" target="_blank">
-                            <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-        
-    </section>
-        <section class="feature-amenities propertyForm">
+            <h2>Gallery</h2>
+            <?php 
+            $gallery_images = get_field('images'); // Assuming 'images' is the gallery field name
+            if( $gallery_images ): ?>
+                <div class="gallery-grid madarchod-coding">
+                    <?php foreach( $gallery_images as $image ): ?>
+                        <div class="gallery-item">
+                            <a href="<?php echo esc_url($image['url']); ?>" target="_blank">
+                                <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            
+        </section>
+
+        <section class="feature-amenities propertyForm" id="contactus">
             <h2>Get in touch!</h2>
             <?php echo do_shortcode('[ninja_form id=1]');  ?>
         </section>
-
-		
 
     </div>
 
