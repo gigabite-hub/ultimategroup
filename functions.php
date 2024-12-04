@@ -371,3 +371,16 @@ function all_property_posts($atts) {
 }
 add_shortcode('all_property', 'all_property_posts');
 
+function add_gtag_script() {
+    ?>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16519725274"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16519725274');
+    </script>
+    <?php
+}
+add_action( 'wp_head', 'add_gtag_script' );
