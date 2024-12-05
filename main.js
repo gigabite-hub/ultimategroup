@@ -9,6 +9,33 @@
         var currentURL = window.location.href;
         console.log("🚀 ~ currentURL:", currentURL)
 
+        var swiper = new Swiper(".propertySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 5,
+                }
+            }
+        });
 
         var updateLightbox = function () {
             var src = $('.active').attr('src');
@@ -149,12 +176,15 @@
                     $('.ultimateRetreat').addClass('loading');
                 }
             })
-            .done(function (results) {
-                $('.ultimateRetreat').html(results);
-                $('.ultimateRetreat').removeClass('loading');
-            });
-                
+                .done(function (results) {
+                    $('.ultimateRetreat').html(results);
+                    $('.ultimateRetreat').removeClass('loading');
+                });
+
         });
+
+
+
 
 
     });

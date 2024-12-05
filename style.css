@@ -609,8 +609,8 @@ Version: 1.0
 }
 
 .ultimate-acc-wrapper .gallery img {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 400px;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -1277,6 +1277,53 @@ a.toggle-btn {
     color: #0a3555;
 }
 
+.propertySwiper .itemsWrappers {
+    border-radius: 0px;
+    padding: 0px;
+}
+
+.propertySwiper .propertyImg img {
+    border-radius: 0px;
+}
+
+.propertySwiper .itemsWrappers:hover .propertyImg img {
+    transform: scale(1);
+}
+
+.propertySwiper .propertyContent h2 {
+    font-family: "Cinzel", Sans-serif;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0px;
+}
+
+.propertySwiper .propertyContent {
+    padding: 20px 10px;
+    background-color: #fff;
+}
+
+.propertyBTN {
+    text-align: right;
+}
+
+.propertyBTN a {
+    text-decoration: none;
+    background-color: #0a3555;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.propertyBTN a:hover {
+    transition: transform 0.5s ease-in-out;
+    color: #dac4ad;
+}
+
+.ultimateItems a {
+    text-decoration: none;
+}
+
+
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
 
@@ -1353,6 +1400,14 @@ a.toggle-btn {
 
 /* Mobile Breakpoint */
 @media (max-width: 768px) {
+
+    .ultimate-acc-wrapper .gallery img {
+        height: 200px;
+    }
+
+    .ultimate-acc-wrapper .gallery {
+        flex-wrap: nowrap;
+    }
 
     .propertyForm nf-fields-wrap nf-field {
         width: 100%
@@ -1567,7 +1622,7 @@ a.toggle-btn {
     .char-wrapper ul li {
         width: 50%;
         margin-bottom: 10px;
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     .acc-characteristics {

@@ -23,9 +23,12 @@ function ultimate_enqueued_scripts() {
     wp_enqueue_style('fullcalendar-css', 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css');
     wp_enqueue_script('moment-js', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js', array('jquery'), null, true);
     wp_enqueue_script('fullcalendar-js', 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js', array('jquery', 'moment-js'), null, true);
+    
+    wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), ULTIMATE);
+	wp_enqueue_script('swiperjs', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array('jquery'), ULTIMATE, true);
+
 
     wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/main.js', array('jquery'), ULTIMATE, true);
-
     wp_localize_script('main-js', 'ULTIMATE', array(
         'AJAX_URL' => admin_url('admin-ajax.php'),
         'NONCE' => wp_create_nonce('ultimate-nonce'),
@@ -384,3 +387,70 @@ function add_gtag_script() {
     <?php
 }
 add_action( 'wp_head', 'add_gtag_script' );
+
+
+function all_available_property($atts) {
+    $atts = shortcode_atts(
+        array(
+            'posts' => 3,
+        ),
+        $atts,
+        'all_property'
+    );
+
+    // Convert to integer for safety
+    $posts_per_page = intval($atts['posts']);
+
+    ob_start();
+
+    $args = array(
+        'post_type'      => 'accommodation',
+        'posts_per_page' => $posts_per_page,
+        'post_status'    => 'publish',
+    );
+
+    $query = new WP_Query($args);
+    if ($query->have_posts()) { ?>
+
+        <div class="swiper propertySwiper">
+            <div class="swiper-wrapper"><?php
+            while ($query->have_posts()) {
+                $query->the_post();
+    
+                // Get post details
+                $title = get_the_title();
+                $link = get_permalink();
+                $excerpt = wp_trim_words(get_the_excerpt(), 30, '...'); // Trim excerpt to 20 words
+                $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: 'https://ultimategroup.ae/wp-content/uploads/2024/11/default-image.jpg'; // Fallback image
+                $price = get_field('property_single_price');
+                // Output post HTML
+                ?>
+                <div class="ultimateItems swiper-slide">
+                    <div class="itemsWrappers">
+                        <div class="propertyImg">
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
+                        </div>
+                        <div class="propertyContent">
+                            <h2><?php echo esc_html($title); ?></h2>
+                            <p><?php echo esc_html($excerpt); ?></p>
+                            <div class="propertyBTN">
+                                <a href="<?php echo esc_url($link); ?>">Full Details</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <?php
+            } ?>
+
+            </div>
+            
+        </div>
+    
+    <?php
+    }
+    
+
+    return ob_get_clean();
+}
+add_shortcode('all_available_property', 'all_available_property');
