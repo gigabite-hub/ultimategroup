@@ -346,12 +346,16 @@ function all_property_posts($atts) {
             ?>
             <div class="ultimateItems">
                 <a href="<?php echo esc_url($link); ?>" class="itemsWrappers">
-                    <div class="propertyImg">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
+                    <div>
+                        <div class="propertyImg">
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
+                        </div>
+                        <div class="innerContent">
+                            <h2><?php echo esc_html($title); ?></h2>
+                            <p><?php echo esc_html($excerpt); ?></p>
+                        </div>
                     </div>
                     <div class="propertyContent">
-                        <h2><?php echo esc_html($title); ?></h2>
-                        <p><?php echo esc_html($excerpt); ?></p>
                         <div class="propertyPrice">
                             <p>Starting Price</p>
                             <h4><?php echo esc_html($price ? 'AED ' . $price : 'Price on Request'); ?> <i class="fa-solid fa-circle-info"></i></h4>
