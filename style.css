@@ -438,6 +438,11 @@ Version: 1.0
     width: calc(25% - 10px);
 }
 
+.ultimateBlogs .sina-bg-thumb img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
 
 /* Accommodation style */
 .ultimate-filter {

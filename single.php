@@ -14,7 +14,7 @@ get_header();
                     the_title('<h1>', '</h1>');
                     // Display the post date and other meta information
                     echo '<p>Posted on: ' . get_the_date() . '</p>';
-                    echo '<p>Author: ' . get_the_author() . '</p>'; ?>
+                    // echo '<p>Author: ' . get_the_author() . '</p>'; ?>
                 </div><?php
 
                 if (has_post_thumbnail()) {
