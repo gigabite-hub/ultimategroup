@@ -355,6 +355,13 @@ function all_property_posts($atts) {
             $excerpt = wp_trim_words(get_the_excerpt(), 20, '...'); // Trim excerpt to 20 words
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: 'https://ultimategroup.ae/wp-content/uploads/2024/11/default-image.jpg'; // Fallback image
             $price = get_field('property_single_price');
+
+            // Get categories (taxonomy: location)
+            $categories = get_the_terms(get_the_ID(), 'location');
+            $category_names = $categories && !is_wp_error($categories)
+                ? implode(', ', wp_list_pluck($categories, 'name'))
+                : 'No Category';
+
             // Output post HTML
             ?>
             <div class="ultimateItems">
@@ -366,6 +373,7 @@ function all_property_posts($atts) {
                         <div class="innerContent">
                             <h2><?php echo esc_html($title); ?></h2>
                             <p><?php echo esc_html($excerpt); ?></p>
+                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($category_names); ?></p>
                         </div>
                     </div>
                     <div class="propertyContent">
