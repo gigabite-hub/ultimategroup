@@ -374,7 +374,10 @@ function all_property_posts($atts) {
                         <div class="innerContent">
                             <h2><?php echo esc_html($title); ?></h2>
                             <p><?php echo esc_html($excerpt); ?></p>
-                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($current_category_name); ?></p>
+                            <?php if (!empty($location_slug) && !empty($current_category_name)): ?>
+                                <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($current_category_name); ?></p>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                     <div class="propertyContent">
