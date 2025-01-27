@@ -14,7 +14,7 @@ function ultimate_enqueued_scripts() {
         ULTIMATE
     );
 
-    wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/2e71d1c020.js', 
+    wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/267229285c.js', 
 		array( 'jquery' ),
 		ULTIMATE, 
 		false 
@@ -358,8 +358,8 @@ function all_property_posts($atts) {
 
             // Get categories (taxonomy: location)
             $categories = get_the_terms(get_the_ID(), 'location');
-            $category_names = $categories && !is_wp_error($categories)
-                ? implode(', ', wp_list_pluck($categories, 'name'))
+            $current_category = $categories && !is_wp_error($categories)
+                ? $categories[0]->name // Get the first category name
                 : 'No Category';
 
             // Output post HTML
@@ -373,7 +373,7 @@ function all_property_posts($atts) {
                         <div class="innerContent">
                             <h2><?php echo esc_html($title); ?></h2>
                             <p><?php echo esc_html($excerpt); ?></p>
-                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($category_names); ?></p>
+                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($current_category); ?></p>
                         </div>
                     </div>
                     <div class="propertyContent">
