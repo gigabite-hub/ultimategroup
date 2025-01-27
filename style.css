@@ -1349,6 +1349,15 @@ a.toggle-btn {
     text-decoration: none;
 }
 
+.innerContent .propertyCategory {
+    font-size: 14px;
+    font-family: "Poppins", Sans-serif;
+    color: #929292;
+}
+
+.innerContent .propertyCategory i {
+    margin-right: 10px;
+}
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
