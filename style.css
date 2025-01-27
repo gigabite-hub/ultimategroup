@@ -1200,7 +1200,8 @@ a.toggle-btn {
 }
 
 .ultimateItems {
-    width: calc(33.333% - 15px);
+    /* width: calc(33.333% - 15px); */
+    width: 33.333%;
     margin-bottom: 15px;
     padding: 10px;
     /* flex: 1; */
