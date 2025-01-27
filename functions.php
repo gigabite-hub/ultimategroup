@@ -311,7 +311,8 @@ function all_property_posts($atts) {
 
     $atts = shortcode_atts(
         array(
-            'posts' => 3,
+            'posts'   => 3,        // Default number of posts
+            'location' => '',      // Default location (empty means no filter)
         ),
         $atts,
         'all_property'
@@ -319,6 +320,7 @@ function all_property_posts($atts) {
 
     // Convert to integer for safety
     $posts_per_page = intval($atts['posts']);
+    $location = sanitize_text_field($atts['location']); // Sanitize location input
 
     ob_start();
 
@@ -327,6 +329,17 @@ function all_property_posts($atts) {
         'posts_per_page' => $posts_per_page,
         'post_status'    => 'publish',
     );
+
+    // Add taxonomy filter if location is provided
+    if (!empty($location)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'location',
+                'field'    => 'slug',
+                'terms'    => $location,
+            ),
+        );
+    }
 
     $query = new WP_Query($args);
 
@@ -368,7 +381,7 @@ function all_property_posts($atts) {
 
         echo '</div>';
     } else {
-        echo '<p>No properties found.</p>';
+        echo '<p>No properties found for this location.</p>';
     }
 
     // Reset post data
@@ -377,6 +390,7 @@ function all_property_posts($atts) {
     return ob_get_clean();
 }
 add_shortcode('all_property', 'all_property_posts');
+
 
 function add_gtag_script() {
     ?>
