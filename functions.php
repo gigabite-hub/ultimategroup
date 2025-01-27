@@ -320,7 +320,7 @@ function all_property_posts($atts) {
 
     // Convert to integer for safety
     $posts_per_page = intval($atts['posts']);
-    $location = sanitize_text_field($atts['location']); // Sanitize location input
+    $location_slug = sanitize_text_field($atts['location']); // Sanitize location input
 
     ob_start();
 
@@ -331,14 +331,21 @@ function all_property_posts($atts) {
     );
 
     // Add taxonomy filter if location is provided
-    if (!empty($location)) {
+    if (!empty($location_slug)) {
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'location',
                 'field'    => 'slug',
-                'terms'    => $location,
+                'terms'    => $location_slug,
             ),
         );
+    }
+
+    // Get the display name of the current category
+    $current_category_name = '';
+    if (!empty($location_slug)) {
+        $current_category = get_term_by('slug', $location_slug, 'location');
+        $current_category_name = $current_category ? $current_category->name : 'No Category';
     }
 
     $query = new WP_Query($args);
@@ -356,12 +363,6 @@ function all_property_posts($atts) {
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: 'https://ultimategroup.ae/wp-content/uploads/2024/11/default-image.jpg'; // Fallback image
             $price = get_field('property_single_price');
 
-            // Get categories (taxonomy: location)
-            $categories = get_the_terms(get_the_ID(), 'location');
-            $current_category = $categories && !is_wp_error($categories)
-                ? $categories[0]->name // Get the first category name
-                : 'No Category';
-
             // Output post HTML
             ?>
             <div class="ultimateItems">
@@ -373,7 +374,7 @@ function all_property_posts($atts) {
                         <div class="innerContent">
                             <h2><?php echo esc_html($title); ?></h2>
                             <p><?php echo esc_html($excerpt); ?></p>
-                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($current_category); ?></p>
+                            <p class="propertyCategory"><i class="fa-solid fa-location-dot"></i> <?php echo esc_html($current_category_name); ?></p>
                         </div>
                     </div>
                     <div class="propertyContent">
