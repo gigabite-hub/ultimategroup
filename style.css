@@ -1361,6 +1361,7 @@ a.toggle-btn {
 
 
 /* New Consultation Form */
+.freeConsultation .nf-form-content .label-above .nf-field-label,
 .freeConsultation .nf-before-form-content,
 .freeConsultation .nf-field-label .ninja-forms-req-symbol {
     display: none;
@@ -1378,6 +1379,7 @@ a.toggle-btn {
 .freeConsultation nf-fields-wrap {
     display: flex;
     flex-wrap: wrap;
+    margin: 0px -10px;
 }
 
 .freeConsultation nf-fields-wrap nf-field {
