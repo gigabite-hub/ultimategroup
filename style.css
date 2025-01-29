@@ -1458,6 +1458,37 @@ a.toggle-btn {
 
 /* End of Consultation Form  */
 
+.categoryPages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.categoryPages h2 {
+    margin: 0px;
+    padding: 5px;
+    width: 25%;
+    margin-bottom: 10px;
+}
+
+.categoryPages h2 a {
+    text-decoration: none;
+    font-size: 16px;
+    box-shadow: 0px 0px 10px 0px rgba(217.6, 217.6, 217.6, 0.5);
+    background-color: #FFFFFF;
+    border: 1px solid #ECECEC;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+}
+
+.categoryPages h2:hover a {
+    color: #dac4ad;
+}
+
+
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
 
@@ -1673,6 +1704,13 @@ a.toggle-btn {
 /* Media Query for Tablet Layout */
 @media screen and (max-width: 768px) {
 
+    .categoryPages h2 {
+        width: 25%;
+    }
+    .categoryPages h2 a {
+        font-size: 14px;
+    }
+
     .scheduleItem img {
         height: 30px;
     }
@@ -1797,6 +1835,15 @@ a.toggle-btn {
 
 /* Media Query for Mobile Layout */
 @media screen and (max-width: 480px) {
+
+    .categoryPages h2 {
+        width: 50%;
+    }
+
+    .categoryPages h2 a {
+        font-size: 12px;
+    }
+
     .sidebar {
         padding: 20px;
     }
