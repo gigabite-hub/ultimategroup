@@ -505,3 +505,46 @@ function add_talktwo_script_to_body() {
     <?php
 }
 add_action('wp_body_open', 'add_talktwo_script_to_body');
+
+
+function get_properties_pages() {
+    ob_start();
+
+    $args = array(
+        'post_type'      => 'page', 
+        'posts_per_page' => -1,     // Retrieve all pages
+        'meta_key'       => 'display_page_for_properties_category', // ACF field key
+        'meta_value'     => '1',    // ACF field value
+        'meta_compare'   => '=',    // Comparison operator
+    );
+    
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) { ?>
+        <div class="categoryPages"><?php
+
+            while ($query->have_posts()) {
+                $query->the_post();
+                // Get the page title
+                $page_title = get_the_title();
+                // Get the page link (URL)
+                $page_link = get_the_permalink(); ?>
+                <h2>
+                    <a href="<?php echo esc_url($page_link);?>"><?php echo esc_html($page_title); ?></a>
+                </h2>
+                <!-- echo '<h2><a href="' . esc_url($page_link) . '">' . esc_html($page_title) . '</a></h2>'; -->
+            <?php
+            } ?>
+
+        </div><?php
+    } else {
+        echo 'No pages found with the specified location at this moment.';
+    }
+    
+    // Reset post data to avoid conflicts with other queries
+    wp_reset_postdata();
+
+    return ob_get_clean();
+}
+add_shortcode( 'fetch_category_property_pages', 'get_properties_pages' );
+
