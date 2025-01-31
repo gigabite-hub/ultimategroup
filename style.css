@@ -1488,6 +1488,24 @@ a.toggle-btn {
     color: #dac4ad;
 }
 
+.newsletterForm nf-fields-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.newsletterForm input[type="submit"] {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.newsletterForm input[type="submit"]:hover {
+    border-radius: 0px;
+}
+
+.newsletterForm .nf-error-field-errors {
+    display: none;
+}
 
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
