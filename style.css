@@ -1507,6 +1507,21 @@ a.toggle-btn {
     display: none;
 }
 
+.UltimateWhatsapp a i {
+    font-size: 30px;
+    color: #42e21f;
+}
+
+.mainMenu .UltimateWhatsapp.menu-item a.hfe-menu-item {
+    padding: 0 !important;
+}
+
+.mainMenu .UltimateWhatsapp.menu-item {
+    display: flex;
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
 /* Tablet Breakpoint */
 @media (max-width: 1024px) {
 
@@ -1725,6 +1740,7 @@ a.toggle-btn {
     .categoryPages h2 {
         width: 25%;
     }
+
     .categoryPages h2 a {
         font-size: 14px;
     }
