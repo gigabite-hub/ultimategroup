@@ -14,7 +14,7 @@ function ultimate_enqueued_scripts() {
         ULTIMATE
     );
 
-    wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/267229285c.js', 
+    wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/c5e079c351.js', 
 		array( 'jquery' ),
 		ULTIMATE, 
 		false 
