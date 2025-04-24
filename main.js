@@ -158,19 +158,33 @@
 
         generateCalendar(events);
 
-
+        var currentPage = 1;
+        var maxPages = 1;
         $('input[name="accommodation_types"]').on('change', function () {
-            var slug = $(this).val(); // Get the selected value
-            console.log(slug); // Log the selected value
+            currentPage = 1; // Reset to first page when category changes
+            var slug = $(this).val();
+            loadAccommodations(slug, currentPage);
+        });
 
-            // Perform AJAX
+
+        $(document).on('click', '.ajax-pagination a', function (e) {
+            e.preventDefault();
+            var slug = $('input[name="accommodation_types"]:checked').val();
+            currentPage = $(this).data('page');
+            loadAccommodations(slug, currentPage);
+        });
+
+
+        // Main function to load accommodations
+        function loadAccommodations(slug, page) {
             $.ajax({
                 url: ULTIMATE.AJAX_URL,
                 type: 'POST',
                 data: {
-                    action: 'switch_category', // Action hook
-                    slug: slug,               // Data to send
-                    nonce: ULTIMATE.NONCE,    // Security nonce
+                    action: 'switch_category',
+                    slug: slug,
+                    page: page,
+                    nonce: ULTIMATE.NONCE
                 },
                 beforeSend: function () {
                     $('.ultimateRetreat').addClass('loading');
@@ -179,9 +193,51 @@
                 .done(function (results) {
                     $('.ultimateRetreat').html(results);
                     $('.ultimateRetreat').removeClass('loading');
-                });
 
-        });
+                    // Update maxPages from the hidden div returned by PHP
+                    maxPages = $('.ajax-pagination-data').data('max-pages');
+
+                    // Update pagination controls
+                    updatePaginationControls(page, maxPages);
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX Error:", textStatus, errorThrown);
+                    $('.ultimateRetreat').removeClass('loading');
+                });
+        }
+
+        // Function to update pagination controls
+        function updatePaginationControls(currentPage, maxPages) {
+            var paginationHtml = '<div class="ajax-pagination">';
+
+            // Previous button
+            if (currentPage > 1) {
+                paginationHtml += '<a href="#" class="prev" data-page="' + (currentPage - 1) + '">« Previous</a>';
+            }
+
+            // Page numbers
+            for (var i = 1; i <= maxPages; i++) {
+                if (i === currentPage) {
+                    paginationHtml += '<span class="current">' + i + '</span>';
+                } else {
+                    paginationHtml += '<a href="#" data-page="' + i + '">' + i + '</a>';
+                }
+            }
+
+            // Next button
+            if (currentPage < maxPages) {
+                paginationHtml += '<a href="#" class="next" data-page="' + (currentPage + 1) + '">Next »</a>';
+            }
+
+            paginationHtml += '</div>';
+
+            // Insert or update pagination controls
+            if ($('.ajax-pagination').length) {
+                $('.ajax-pagination').replaceWith(paginationHtml);
+            } else {
+                $('.ultimateRetreat').append(paginationHtml);
+            }
+        }
 
 
 

@@ -151,11 +151,13 @@ add_shortcode('accommodation_taxonomy_radios', 'get_accommodation_taxonomy_radio
 
 function get_accommodation_posts( $atts ) {
     ob_start();
-
+    
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    
     $atts = shortcode_atts(
         array(
             'post_type' => 'accommodation',
-            'number'    => -1,
+            'number'    => 6, // Changed from -1 to 6
         ),
         $atts
     );
@@ -163,14 +165,14 @@ function get_accommodation_posts( $atts ) {
     $args = array(
         'post_type'      => esc_attr($atts['post_type']),
         'posts_per_page' => intval($atts['number']),
-        'post_status'    => 'publish', // Only fetch published posts
-        'orderby'        => 'title',
-        'order'          => 'DESC',
+        'paged'         => $paged,
+        'post_status'   => 'publish',
+        'orderby'       => 'title',
+        'order'         => 'DESC',
     );
 
-    // Query posts
     $query = new WP_Query($args);
-
+    
     if (!$query->have_posts()) {
         return 'No posts found.';
     }?>
@@ -230,6 +232,17 @@ function get_accommodation_posts( $atts ) {
         <?php
         } ?>
     </div><?php
+
+    // Add pagination
+    echo '<div class="accommodation-pagination">';
+    echo paginate_links(array(
+        'total'   => $query->max_num_pages,
+        'current' => $paged,
+        'prev_text' => __('« Previous'),
+        'next_text' => __('Next »'),
+    ));
+    echo '</div>';
+
     wp_reset_postdata();
 
     return ob_get_clean();
@@ -240,11 +253,13 @@ function switch_category() {
     check_ajax_referer('ultimate-nonce', 'nonce'); // Security check
 
     $slug = isset($_POST['slug']) ? sanitize_text_field($_POST['slug']) : '';
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
     // Base query arguments
     $args = array(
         'post_type'      => 'accommodation',
-        'posts_per_page' => -1,
+        'posts_per_page' => 6,
+        'paged'         => $page,
         'post_status'    => 'publish',
     );
 
@@ -320,6 +335,10 @@ function switch_category() {
             </div>
         </div><?php
     } 
+
+    // Add pagination info to response
+    echo '<div class="ajax-pagination-data" data-max-pages="' . $query->max_num_pages . '" data-current-page="' . $page . '"></div>';
+
     wp_reset_postdata();
     wp_die();
 }
@@ -329,7 +348,7 @@ add_action('wp_ajax_nopriv_switch_category', 'switch_category');
 
 
 function all_property_posts($atts) {
-
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $atts = shortcode_atts(
         array(
             'posts'   => 3,        // Default number of posts
@@ -348,6 +367,7 @@ function all_property_posts($atts) {
     $args = array(
         'post_type'      => 'property',
         'posts_per_page' => $posts_per_page,
+        'paged'         => $paged,
         'post_status'    => 'publish',
     );
 
@@ -416,6 +436,16 @@ function all_property_posts($atts) {
     } else {
         echo '<p>No properties found for this location.</p>';
     }
+
+    // Add pagination
+    echo '<div class="property-pagination">';
+    echo paginate_links(array(
+        'total'   => $query->max_num_pages,
+        'current' => $paged,
+        'prev_text' => __('« Previous'),
+        'next_text' => __('Next »'),
+    ));
+    echo '</div>';
 
     // Reset post data
     wp_reset_postdata();
