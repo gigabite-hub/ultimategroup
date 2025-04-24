@@ -35,20 +35,32 @@ function ultimate_enqueued_scripts() {
     ));
 }
 
-function display_blog_posts() {
+function display_blog_posts($atts) {
     ob_start();
+    
+    // Set up pagination
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    
+    // Extract shortcode attributes
+    $atts = shortcode_atts(
+        array(
+            'posts_per_page' => 6, // Default to 6 posts per page
+        ),
+        $atts
+    );
 
     // Query the blog posts
     $args = array(
         'post_type'      => 'post',
-        'posts_per_page' => -1, // Display all posts
+        'posts_per_page' => $atts['posts_per_page'],
+        'paged'          => $paged,
     );
+    
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
         echo '<div class="blog-posts">';
 
-        // Loop through the posts
         while ($query->have_posts()) {
             $query->the_post();
 
@@ -70,10 +82,19 @@ function display_blog_posts() {
         }
 
         echo '</div>';
+        
+        // Pagination
+        echo '<div class="blog-pagination">';
+        echo paginate_links(array(
+            'total'   => $query->max_num_pages,
+            'current' => $paged,
+            'prev_text' => __('« Previous'),
+            'next_text' => __('Next »'),
+        ));
+        echo '</div>';
     }
 
     wp_reset_postdata();
-
     return ob_get_clean();
 }
 add_shortcode('blog_posts', 'display_blog_posts');
@@ -548,3 +569,15 @@ function get_properties_pages() {
 }
 add_shortcode( 'fetch_category_property_pages', 'get_properties_pages' );
 
+
+// Add a Shortcode column to Elementor Library (Saved Templates)
+add_filter('manage_elementor_library_posts_columns', function($columns) {
+    $columns['shortcode'] = __('Shortcode', 'elementor');
+    return $columns;
+});
+
+add_action('manage_elementor_library_posts_custom_column', function($column, $post_id) {
+    if ($column === 'shortcode') {
+        echo '<code>[elementor-template id="' . esc_attr($post_id) . '"]</code>';
+    }
+}, 10, 2);
