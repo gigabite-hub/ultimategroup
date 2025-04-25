@@ -1524,6 +1524,7 @@ a.toggle-btn {
 
 
 /* Pagination Container */
+.blog-pagination,
 .property-pagination {
     display: flex;
     justify-content: center;
@@ -1534,6 +1535,9 @@ a.toggle-btn {
     font-family: 'Arial', sans-serif;
 }
 
+
+.blog-pagination a,
+.blog-pagination span,
 .property-pagination a,
 .property-pagination span {
     display: inline-flex;
@@ -1552,31 +1556,43 @@ a.toggle-btn {
     background-color: #f9f9f9;
 }
 
+.blog-pagination .current,
 .property-pagination .current {
     background-color: #0a3555;
     color: white;
     border-color: #0a3555;
 }
 
+.blog-pagination a:hover,
 .property-pagination a:hover {
     background-color: #e9e9e9;
     border-color: #d0d0d0;
 }
 
+.blog-pagination .prev,
+.blog-pagination .next,
 .property-pagination .prev,
 .property-pagination .next {
     padding: 0 16px;
 }
 
+.blog-pagination .dots,
 .property-pagination .dots {
     border: none;
     background: transparent;
     pointer-events: none;
 }
 
+.blog-pagination .disabled,
 .property-pagination .disabled {
     opacity: 0.5;
     pointer-events: none;
+}
+
+.ajax-pagination .current {
+    padding: 10px;
+    background-color: #0a3555;
+    color: #ffffff;
 }
 
 /* Tablet Breakpoint */
@@ -1973,10 +1989,13 @@ a.toggle-btn {
         font-size: 12px;
     }
 
+    .blog-pagination,
     .property-pagination {
         gap: 4px;
     }
 
+    .blog-pagination a,
+    .blog-pagination span,
     .property-pagination a,
     .property-pagination span {
         min-width: 32px;
@@ -1985,6 +2004,8 @@ a.toggle-btn {
         padding: 0 8px;
     }
 
+    .blog-pagination .prev,
+    .blog-pagination .next,
     .property-pagination .prev,
     .property-pagination .next {
         padding: 0 12px;
