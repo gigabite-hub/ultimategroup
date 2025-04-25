@@ -438,14 +438,16 @@ function all_property_posts($atts) {
     }
 
     // Add pagination
-    echo '<div class="property-pagination">';
-    echo paginate_links(array(
-        'total'   => $query->max_num_pages,
-        'current' => $paged,
-        'prev_text' => __('« Previous'),
-        'next_text' => __('Next »'),
-    ));
-    echo '</div>';
+    if ($posts_per_page >= 6) {
+        echo '<div class="property-pagination">';
+        echo paginate_links(array(
+            'total'   => $query->max_num_pages,
+            'current' => $paged,
+            'prev_text' => __('« Previous'),
+            'next_text' => __('Next »'),
+        ));
+        echo '</div>';
+    }
 
     // Reset post data
     wp_reset_postdata();
